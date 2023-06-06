@@ -1,7 +1,15 @@
-const express = require('express')
-const app = express()
-app.all('/', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yo!')
-})
-app.listen(process.env.PORT || 3000)
+const express = require('express');
+const rotas = require('./routes/routs')
+
+
+const app = express();
+app.use(express.json());
+app.use(rotas);
+
+
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
